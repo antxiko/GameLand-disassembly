@@ -1,0 +1,11 @@
+# Zonas que NO son codigo aunque el trazado pueda entrar en ellas.
+
+# La cabecera: "AB", INIT, STATEMENT, DEVICE, TEXT y seis reservados.
+0x4000 0x4010
+0x5813 0x5821  # la tabla de rutinas de 0x5811
+0x4644 0x464E  # la tabla de rutinas de 0x462B
+0x5287 0x52B9  # las tablas de rutinas de 0x4CE6 y 0x52A9
+0xB142 0xB222  # las tablas de rutinas de 0xB142, 0xB164, 0xB19E, 0xB1A4 y 0xB1E2
+0xB304 0xB4E0  # los menus (0xB304) y las teclas (0xB48F)
+0x6DC3 0x6DD7  # la tabla de rutinas de cinta de 0x6DCB
+0x52B9 0x5400  # las teclas de cada modo del editor: punteros (0x52B9) y listas de tecla y rutina
