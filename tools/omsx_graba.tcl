@@ -42,4 +42,4 @@ debug set_bp $::env(GRABA_BP) {} { entra }
 if {[info exists ::env(GRABA_BP2)]} {
     foreach b $::env(GRABA_BP2) { debug set_bp $b {} { entra } }
 }
-after time 1800 {close $::f; exit}
+after time 300 {close $::f; exit}

@@ -3568,7 +3568,6 @@ C 0x95C9 al final?
 C 0x95CD otra vez desde 0x8100
 C 0x95D1 el registro R
 L 0x95D0 azar_va
-L 0x95DC presentacion          La presentacion: letras blancas, pantalla de texto, borde de color 1, dos dibujos de letra (0x6F92 en 0x440, 0x6FB2 en 0x400) y tres colores (0x9830); arma en la RAM (0xE000, 0x900 espacios) el rotulo grande con el dibujo de bits de 0x97A0 (cada bit a 1, la casilla 0x90), los tres textos de 0x97DE en sus sitios (0x97D8: PUSH SPACE KEY, COPYRIGHT 1984, BY CASIO) y unas columnas de casillas 0x80 y 0x88 (0x971B, 0x9730); un sprite, la musica de la presentacion (0xA399) y el gancho de la interrupcion (0xFE68 = "jp 0x9747") que sube la pantalla; espera la barra
 C 0x95DC letras blancas
 C 0x95E6 la pantalla de texto
 C 0x95F0 borde 1
@@ -3586,7 +3585,6 @@ C 0x961C 0x900 bytes...
 C 0x961F ...de espacios...
 C 0x9621 ...en 0xE000
 C 0x962A la fila 1
-C 0x962D el dibujo de bits
 C 0x9630 0x38 bytes, la casilla 0x90
 L 0x9633 presentacion_byte
 C 0x9635 8 bits
@@ -3607,11 +3605,9 @@ C 0x966E dos bloques de 0x80
 L 0x9675 presentacion_bloques
 C 0x9681 dos de 0x88
 L 0x9688 presentacion_bloques2
-C 0x9694 un dibujo de sprite...
 C 0x9697 ...en 0x1C00
 C 0x969D LDIRVM
 C 0x96A2 color 7
-C 0x96A7 en Y 0xB0, X 0x78
 C 0x96AD un sonido...
 C 0x96B5 ...la musica de la presentacion
 C 0x96BB que suene
@@ -3635,7 +3631,6 @@ L 0x971B columnas_pon          B columnas de 0x38 filas... de la casilla A desde
 L 0x9728 columna_pon           B casillas A en columna (cada 32) desde HL
 L 0x9730 bloques_pon           B bloques de 7 x 6 casillas A
 L 0x9734 bloques_pon_fila
-L 0x9747 presentacion_cuadro   El gancho de cada cuadro de la presentacion: primero (0xFA58 = 0) la pantalla de texto (0x3C00) se copia desde la RAM 0xFA59, 32 bytes mas arriba cada vez (sube), hasta 0xE000; despues, letra a letra, el texto de 0xFC70 en la VRAM de 0xFC6E (hacia atras), y 0x50 cuadros de espera
 C 0x974A subiendo?
 C 0x974B el sonido...
 C 0x9750 ...sonando?
@@ -3654,7 +3649,6 @@ L 0x978E presentacion_letra_pon
 L 0x9795 presentacion_cuenta
 C 0x9798 un cuadro menos
 C 0x979C acabado
-D 0x97A0 0x9833 presentacion_datos El rotulo grande de la presentacion (0x97A0: 0x38 bytes de bits, 4 por fila de 32 casillas), los sitios en la RAM de los tres textos (0x97D8) y los textos (0x97DE: PUSH SPACE KEY, COPYRIGHT 1984 y BY CASIO), el texto de 0x9807 y los tres colores (0x9830)
 L 0x9833 sonido_cero           0xFA5C-0xFAC0 (lo del editor de sonido) a 0
 L 0x983C sonido_editor         EL SONIDO (menu 0x0C, 3): el menu 0x87 (nuevo, arreglar, borrar o acabar); nuevo: el nombre (menu 0x88, 0x9939), la clase (menu 0x8A: 0x99C6) y, si es musica, el pentagrama (0x9918); si no, los efectos (menu 0x8F, a 0xFA5C) y el menu 0x8E (0x9A9B)
 C 0x983D sin escritura
@@ -4272,20 +4266,17 @@ L 0x7C51 menu_salta_va
 C 0x7C59 la tabla de entrada de los menus
 C 0x7C63 la pila
 L 0x7C60 menu_salta_pon
-L 0x7C6C tecla_personajes      La tecla de la lista de personajes (0x0A en la tabla 0xB19E): la primera vez (0xFA19 = 0), la pantalla, la lista de personajes desde el 1 (si no hay historia, el aviso 0x0D); otra vez, la pagina siguiente o el menu de antes
 C 0x7C6C ya en la lista?
 C 0x7C7E hay historia?
 C 0x7C85 la lista
 L 0x7C8F tecla_personajes_va
 L 0x7C94 tecla_personajes_sig
 C 0x7C94 el ultimo?
-L 0x7C9E tecla_sonidos         La tecla de la lista de sonidos (9): la lista de los sonidos (si no hay, el aviso 0x0C); otra vez, el menu de antes
 C 0x7CAE hay sonidos?
 L 0x7CA8 tecla_sonidos_va
 L 0x7CB6 tecla_aviso
 L 0x7CBE tecla_sonidos_lista
 L 0x7CCB tecla_espera_va
-L 0x7CCE tecla_ayuda           La tecla de ayuda (7): el aviso de ayuda del menu de ahora (las tablas 0xB423 y, en los del fondo, 0xB43A con la opcion): el aviso 0x24 + n en la fila 4; otra vez, el menu
 C 0x7CCE ya en la ayuda?
 L 0x7CD6 tecla_ayuda_fin
 L 0x7CD7 tecla_ayuda_vuelve
@@ -4300,7 +4291,6 @@ L 0x7D06 tecla_ayuda_sig
 L 0x7D0E tecla_ayuda_hallada
 L 0x7D17 tecla_ayuda_pon
 C 0x7D18 el aviso 0x24 + n
-L 0x7D25 tecla_menu_directo    La tecla 8 (B19E): el sonido de la tecla, fuera de las listas y al menu que le toca en la tabla 0xB179 (pares de umbral y menu)
 C 0x7D2F la tabla
 L 0x7D32 tecla_menu_busca
 L 0x7D39 tecla_menu_hallado
@@ -8382,3 +8372,13 @@ C 0xB10F + DE
 C 0xB11B x 2
 C 0xB11C el acarreo
 C 0xB11F redondeo
+L 0x95DC presentacion          La presentacion: letras blancas, pantalla de texto, borde de color 1, dos dibujos de casilla (0x6F92: el ladrillo, en la 0x88; 0x6FB2 en la 0x80) y tres colores (0x9830); arma en la RAM (0xE000, 0x900 espacios: tres pantallas de alto) una carretera: las marcas del centro con el dibujo de bits de 0x97A0 (cada bit a 1, la casilla 0x90), los tres textos de 0x97DE en sus sitios (0x97D8: PUSH SPACE KEY, COPYRIGHT 1984, BY CASIO) y los muros de ladrillo de los lados (0x971B, 0x9730); la nave (un sprite de 0xA581, el cohete de las muestras), la musica de la presentacion (0xA399) y el gancho de la interrupcion (0xFE68 = "jp 0x9747") que hace correr la carretera hacia abajo; espera la barra
+C 0x962D las marcas de la carretera
+C 0x9694 la nave (el cohete)...
+C 0x96A7 ...en Y 0xB0, X 0x78
+D 0x97A0 0x9833 presentacion_datos Las marcas del centro de la carretera de la presentacion (0x97A0: 0x38 bytes de bits, 4 por fila de 32 casillas), los sitios en la RAM de los tres textos (0x97D8) y los textos (0x97DE: PUSH SPACE KEY, COPYRIGHT 1984 y BY CASIO), el texto de 0x9807 y los tres colores (0x9830)
+L 0x9747 presentacion_cuadro   El gancho de cada cuadro de la presentacion: primero (0xFA58 = 0) la pantalla de texto (0x3C00) se copia desde la RAM 0xFA59, 32 bytes mas arriba cada vez (la carretera corre hacia abajo bajo la nave), hasta 0xE000; despues, letra a letra, el texto de 0xFC70 en la VRAM de 0xFC6E (hacia atras), y 0x50 cuadros de espera
+L 0x7C6C tecla_personajes      F3 (el codigo 9, tabla 0xB19E): la lista de personajes; la primera vez (0xFA19 = 0), la pantalla y la lista desde el 1 (si no hay historia, el aviso 0x0D); otra vez, la pagina siguiente o el menu de antes
+L 0x7C9E tecla_sonidos         F2 (el codigo 8): la lista de los sonidos (si no hay, el aviso 0x0C); otra vez, el menu de antes
+L 0x7CCE tecla_ayuda           F4 (el codigo 0x0A): el aviso de ayuda del menu de ahora (las tablas 0xB423 y, en los del fondo, 0xB43A con la opcion): el aviso 0x24 + n en la fila 4; otra vez, el menu
+L 0x7D25 tecla_menu_directo    El codigo 7 (B19E): el sonido de la tecla, fuera de las listas y al menu que le toca en la tabla 0xB179 (pares de umbral y menu)

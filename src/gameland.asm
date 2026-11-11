@@ -9193,7 +9193,7 @@ menu_salta_pon:
 	ld sp,0f9f1h		;7c63   ; la pila
 	call palabra_lee		;7c66
 	jp salta_hl		;7c69
-tecla_personajes:		; La tecla de la lista de personajes (0x0A en la tabla 0xB19E): la primera vez (0xFA19 = 0), la pantalla, la lista de personajes desde el 1 (si no hay historia, el aviso 0x0D); otra vez, la pagina siguiente o el menu de antes
+tecla_personajes:		; F3 (el codigo 9, tabla 0xB19E): la lista de personajes; la primera vez (0xFA19 = 0), la pantalla y la lista desde el 1 (si no hay historia, el aviso 0x0D); otra vez, la pagina siguiente o el menu de antes
 	ld a,(0fa19h)		;7c6c   ; ya en la lista?
 	cp 020h		;7c6f
 	jr z,tecla_personajes_sig		;7c71
@@ -9219,7 +9219,7 @@ tecla_personajes_sig:
 	inc a			;7c9a
 	ld c,a			;7c9b
 	jr tecla_personajes_va		;7c9c
-tecla_sonidos:		; La tecla de la lista de sonidos (9): la lista de los sonidos (si no hay, el aviso 0x0C); otra vez, el menu de antes
+tecla_sonidos:		; F2 (el codigo 8): la lista de los sonidos (si no hay, el aviso 0x0C); otra vez, el menu de antes
 	ld a,(0fa19h)		;7c9e   ; la lista en pantalla
 	and a			;7ca1
 	jr z,tecla_sonidos_va		;7ca2
@@ -9244,7 +9244,7 @@ tecla_sonidos_lista:
 	call sonidos_lista_limpia		;7cc8
 tecla_espera_va:
 	jp tecla_espera_1		;7ccb
-tecla_ayuda:		; La tecla de ayuda (7): el aviso de ayuda del menu de ahora (las tablas 0xB423 y, en los del fondo, 0xB43A con la opcion): el aviso 0x24 + n en la fila 4; otra vez, el menu
+tecla_ayuda:		; F4 (el codigo 0x0A): el aviso de ayuda del menu de ahora (las tablas 0xB423 y, en los del fondo, 0xB43A con la opcion): el aviso 0x24 + n en la fila 4; otra vez, el menu
 	ld a,(0fa19h)		;7cce   ; ya en la ayuda?
 	and a			;7cd1
 	jr z,tecla_ayuda_busca		;7cd2
@@ -9303,7 +9303,7 @@ tecla_ayuda_pon:
 	ld (0fa19h),a		;7d1d   ; la lista en pantalla
 	call aviso_fila4		;7d20
 	jr tecla_espera_va		;7d23
-tecla_menu_directo:		; La tecla 8 (B19E): el sonido de la tecla, fuera de las listas y al menu que le toca en la tabla 0xB179 (pares de umbral y menu)
+tecla_menu_directo:		; El codigo 7 (B19E): el sonido de la tecla, fuera de las listas y al menu que le toca en la tabla 0xB179 (pares de umbral y menu)
 	call sonido_cola_a		;7d25
 	xor a			;7d28
 	ld (0fa19h),a		;7d29   ; la lista en pantalla
@@ -13138,7 +13138,7 @@ azar_va:
 	pop bc			;95d9
 	pop hl			;95da
 	ret			;95db
-presentacion:		; La presentacion: letras blancas, pantalla de texto, borde de color 1, dos dibujos de letra (0x6F92 en 0x440, 0x6FB2 en 0x400) y tres colores (0x9830); arma en la RAM (0xE000, 0x900 espacios) el rotulo grande con el dibujo de bits de 0x97A0 (cada bit a 1, la casilla 0x90), los tres textos de 0x97DE en sus sitios (0x97D8: PUSH SPACE KEY, COPYRIGHT 1984, BY CASIO) y unas columnas de casillas 0x80 y 0x88 (0x971B, 0x9730); un sprite, la musica de la presentacion (0xA399) y el gancho de la interrupcion (0xFE68 = "jp 0x9747") que sube la pantalla; espera la barra
+presentacion:		; La presentacion: letras blancas, pantalla de texto, borde de color 1, dos dibujos de casilla (0x6F92: el ladrillo, en la 0x88; 0x6FB2 en la 0x80) y tres colores (0x9830); arma en la RAM (0xE000, 0x900 espacios: tres pantallas de alto) una carretera: las marcas del centro con el dibujo de bits de 0x97A0 (cada bit a 1, la casilla 0x90), los tres textos de 0x97DE en sus sitios (0x97D8: PUSH SPACE KEY, COPYRIGHT 1984, BY CASIO) y los muros de ladrillo de los lados (0x971B, 0x9730); la nave (un sprite de 0xA581, el cohete de las muestras), la musica de la presentacion (0xA399) y el gancho de la interrupcion (0xFE68 = "jp 0x9747") que hace correr la carretera hacia abajo; espera la barra
 	ld a,00fh		;95dc   ; letras blancas
 	ld (0fa36h),a		;95de   ; el color de las letras
 	ld a,001h		;95e1
@@ -13174,7 +13174,7 @@ presentacion_color:
 	ld de,0e001h		;9625
 	ldir		;9628
 	ld hl,0e020h		;962a   ; la fila 1
-	ld de,097a0h		;962d   ; el dibujo de bits
+	ld de,097a0h		;962d   ; las marcas de la carretera
 	ld bc,03890h		;9630   ; 0x38 bytes, la casilla 0x90
 presentacion_byte:
 	push bc			;9633
@@ -13240,14 +13240,14 @@ presentacion_bloques2:
 	ld hl,0e393h		;968e
 	pop bc			;9691
 	djnz presentacion_bloques2		;9692
-	ld hl,0a581h		;9694   ; un dibujo de sprite...
+	ld hl,0a581h		;9694   ; la nave (el cohete)...
 	ld de,01c00h		;9697   ; ...en 0x1C00
 	ld bc,00020h		;969a
 	call 0005ch		;969d   ; LDIRVM
 	ld c,020h		;96a0
 	ld a,007h		;96a2   ; color 7
 	call sprite_color		;96a4
-	ld hl,0b078h		;96a7   ; en Y 0xB0, X 0x78
+	ld hl,0b078h		;96a7   ; ...en Y 0xB0, X 0x78
 	call sprite_xy		;96aa
 	ld a,001h		;96ad   ; un sonido...
 	ld (0f423h),a		;96af
@@ -13330,7 +13330,7 @@ bloques_pon_fila:
 	pop bc			;9743
 	djnz bloques_pon		;9744
 	ret			;9746
-presentacion_cuadro:		; El gancho de cada cuadro de la presentacion: primero (0xFA58 = 0) la pantalla de texto (0x3C00) se copia desde la RAM 0xFA59, 32 bytes mas arriba cada vez (sube), hasta 0xE000; despues, letra a letra, el texto de 0xFC70 en la VRAM de 0xFC6E (hacia atras), y 0x50 cuadros de espera
+presentacion_cuadro:		; El gancho de cada cuadro de la presentacion: primero (0xFA58 = 0) la pantalla de texto (0x3C00) se copia desde la RAM 0xFA59, 32 bytes mas arriba cada vez (la carretera corre hacia abajo bajo la nave), hasta 0xE000; despues, letra a letra, el texto de 0xFC70 en la VRAM de 0xFC6E (hacia atras), y 0x50 cuadros de espera
 	ld a,(0fa58h)		;9747
 	and a			;974a   ; subiendo?
 	ld a,(0fa72h)		;974b   ; el sonido...
@@ -13379,10 +13379,11 @@ presentacion_cuenta:
 	ret			;979f
 
 ; ----------------------------------------------------------------------
-; DATOS presentacion_datos: El rotulo grande de la presentacion (0x97A0: 0x38
-;   bytes de bits, 4 por fila de 32 casillas), los sitios en la RAM de los
-;   tres textos (0x97D8) y los textos (0x97DE: PUSH SPACE KEY, COPYRIGHT 1984
-;   y BY CASIO), el texto de 0x9807 y los tres colores (0x9830)
+; DATOS presentacion_datos: Las marcas del centro de la carretera de la
+;   presentacion (0x97A0: 0x38 bytes de bits, 4 por fila de 32 casillas), los
+;   sitios en la RAM de los tres textos (0x97D8) y los textos (0x97DE: PUSH
+;   SPACE KEY, COPYRIGHT 1984 y BY CASIO), el texto de 0x9807 y los tres
+;   colores (0x9830)
 ;   0x97a0..0x9833  (147 bytes)
 DATA_presentacion_datos:
 	defb 01eh,060h,0c7h,07ch,023h,070h,06fh,060h,020h,068h,053h,078h,027h,064h,043h,060h	; 97a0  .`.|#po` hSx'dC`
