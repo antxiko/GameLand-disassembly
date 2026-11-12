@@ -102,6 +102,7 @@ musica: $(ROM)
 # La portada la monta make_web.py con lo de tools/contenido_web.py.
 JEKYLL ?= C:/msys64/mingw64/bin/ruby C:/msys64/mingw64/bin/jekyll
 web:
+	python3 tools/textos.py docs
 	python3 tools/jekyll.py docs
 	python3 tools/make_web.py docs/imagenes docs/index.html en
 	python3 tools/make_web.py docs/imagenes docs/es/index.html es

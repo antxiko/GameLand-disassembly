@@ -79,6 +79,9 @@ PAGINAS = [
       "a background drawn with its tools, characters from the samples, the sounds, the story and the movements",
       "un fondo dibujado con sus herramientas, personajes con las muestras, los sonidos, la historia y los "
       "movimientos"),
+     ("THE-TEXTS.html", "LOS-TEXTOS.html", "The texts", "Los textos",
+      "every menu, message and label in the ROM, taken from it, with its translation",
+      "todos los men&uacute;s, avisos y r&oacute;tulos de la ROM, sacados de ella, con su traducci&oacute;n"),
      ("THE-MUSIC.html", "LA-MUSICA.html", "The music", "La m&uacute;sica",
       "the four sample tunes, from its own sound engine",
       "las cuatro m&uacute;sicas de muestra, de su propio motor de sonido"),
