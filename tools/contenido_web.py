@@ -88,7 +88,10 @@ PAGINAS = [
     [("CURIOSITIES.html", "CURIOSIDADES.html", "Curiosities", "Curiosidades",
       "a second cartridge, a tablet, code that writes code, randomness read from the ROM, dead code",
       "un segundo cartucho, una tableta, c&oacute;digo que escribe c&oacute;digo, el azar le&iacute;do de la "
-      "ROM, c&oacute;digo muerto")],
+      "ROM, c&oacute;digo muerto"),
+     ("SECRETS-AND-BUGS.html", "SECRETOS-Y-FALLOS.html", "Secrets and bugs", "Secretos y fallos",
+      "what was searched for: HOME and the second cartridge, the tablet, the keyboard, the score of the games that goes back to zero past 999,990, and the extra lives checked",
+      "lo que se ha buscado: HOME y el segundo cartucho, la tableta, el teclado, los puntos de los juegos que vuelven a cero pasados los 999.990, y las vidas de m&aacute;s comprobadas")],
     [("UNDER-THE-HOOD.html", "POR-DENTRO.html", "Under the hood", "Por dentro",
       "rebuilding the ROM, the cartridge, the game it stores, the engine that plays it, the drawing library, the "
       "tape and the RAM",
