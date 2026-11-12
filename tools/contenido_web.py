@@ -81,7 +81,10 @@ PAGINAS = [
       "movimientos"),
      ("THE-MUSIC.html", "LA-MUSICA.html", "The music", "La m&uacute;sica",
       "the four sample tunes, from its own sound engine",
-      "las cuatro m&uacute;sicas de muestra, de su propio motor de sonido")],
+      "las cuatro m&uacute;sicas de muestra, de su propio motor de sonido"),
+     ("THE-SPRITES.html", "LOS-SPRITES.html", "The sprites", "Los sprites",
+      "the program's own sprites, its cursors and the clefs, drawn by running its own routine",
+      "los sprites del propio programa, sus cursores y las claves, pintados ejecutando su propia rutina")],
     [("CURIOSITIES.html", "CURIOSIDADES.html", "Curiosities", "Curiosidades",
       "a second cartridge, a tablet, code that writes code, randomness read from the ROM, dead code",
       "un segundo cartucho, una tableta, c&oacute;digo que escribe c&oacute;digo, el azar le&iacute;do de la "
